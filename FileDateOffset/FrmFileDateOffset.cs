@@ -176,18 +176,21 @@ namespace FileDateOffset
             return dtFile;
         }
 
-        public static void SetFileCreationDate(string filePath, DateTime dtCreation)
+        public static void SetFileCreationDate(string filePath, DateTime dtCreation, bool setImageDate)
         {
-            string ext = Path.GetExtension(filePath).ToLower();
-            if (ext == ".png" || ext == ".jpg" || ext == ".jpeg" || ext == ".gif")
+            if (setImageDate)
             {
-                Image img = Image.FromFile(filePath);
-                SetExifDateTaken(img, dtCreation);
-                string filePath2 = string.Format("{0}.temp.jpg", filePath);
-                img.Save(filePath2);
-                img.Dispose();
-                File.Delete(filePath);
-                File.Move(filePath2, filePath);
+                string ext = Path.GetExtension(filePath).ToLower();
+                if (ext == ".png" || ext == ".jpg" || ext == ".jpeg" || ext == ".gif")
+                {
+                    Image img = Image.FromFile(filePath);
+                    SetExifDateTaken(img, dtCreation);
+                    string filePath2 = string.Format("{0}.temp.jpg", filePath);
+                    img.Save(filePath2);
+                    img.Dispose();
+                    File.Delete(filePath);
+                    File.Move(filePath2, filePath);
+                }
             }
 
             File.SetCreationTime(filePath, dtCreation);
@@ -233,7 +236,7 @@ namespace FileDateOffset
             return offset;
         }
 
-        private void ProcessFile(string filePath, string fileName, bool doAction, DateOffset dateOffset)
+        private void ProcessFile_ApplyOffset(string filePath, string fileName, bool doAction, DateOffset dateOffset)
         {
             DateTime dtFile = GetFileCreationDate(filePath);
             if (doAction)
@@ -245,13 +248,24 @@ namespace FileDateOffset
                           .AddDays(dateOffset.Days)
                           .AddMonths(dateOffset.Months)
                           .AddYears(dateOffset.Years);
-                SetFileCreationDate(filePath, dtFile);
+                SetFileCreationDate(filePath, dtFile, true);
             }
 
             lsbFiles_AddLine(string.Format("ApplyOffset: {0} {1} ", fileName, dtFile.ToString()));
         }
 
-        private void ProcessDirectory(string path, bool doAction, DateOffset dateOffset)
+        private void ProcessFile_SetDate(string filePath, string fileName, bool doAction, DateOffset dateNew)
+        {
+            DateTime dtFile = new DateTime(dateNew.Years, dateNew.Months, dateNew.Days, dateNew.Hours, dateNew.Minutes, dateNew.Seconds);
+            if (doAction)
+            {
+                SetFileCreationDate(filePath, dtFile, false);
+            }
+
+            lsbFiles_AddLine(string.Format("SetDate: {0} {1} ", fileName, dtFile.ToString()));
+        }
+
+        private void ProcessDirectory(string path, bool doAction, DateOffset dateOffset, bool setDate)
         {
             string[] filePaths = Directory.GetFiles(path);
             foreach (string filePath in filePaths)
@@ -260,7 +274,14 @@ namespace FileDateOffset
 
                 if (cbFilter_ApplyFilter(fileName))
                 {
-                    ProcessFile(filePath, fileName, doAction, dateOffset);
+                    if (setDate)
+                    {
+                        ProcessFile_SetDate(filePath, fileName, doAction, dateOffset);
+                    }
+                    else
+                    {
+                        ProcessFile_ApplyOffset(filePath, fileName, doAction, dateOffset);
+                    }
                 }
                 else
                 {
@@ -271,7 +292,7 @@ namespace FileDateOffset
             string[] directoryPaths = Directory.GetDirectories(path);
             foreach (string directoryPath in directoryPaths)
             {
-                ProcessDirectory(directoryPath, doAction, dateOffset);
+                ProcessDirectory(directoryPath, doAction, dateOffset, setDate);
             }
         }
 
@@ -286,7 +307,7 @@ namespace FileDateOffset
 
             lsbFiles_Clean();
             DateOffset dateOffset = GetDateOffset();
-            ProcessDirectory(path, doAction, dateOffset);
+            ProcessDirectory(path, doAction, dateOffset, chkSetDate.Checked);
         }
 
         private void btnGo_Click(object sender, EventArgs e)
@@ -299,5 +320,16 @@ namespace FileDateOffset
             Process(false);
         }
 
+        private void btnSetNow_Click(object sender, EventArgs e)
+        {
+            DateTime now = DateTime.UtcNow;
+
+            txtYears.Text = Convert.ToString(now.Year);
+            txtMonths.Text = Convert.ToString(now.Month);
+            txtDays.Text = Convert.ToString(now.Day);
+            txtHours.Text = Convert.ToString(now.Hour);
+            txtMinutes.Text = Convert.ToString(now.Minute);
+            txtSeconds.Text = Convert.ToString(now.Second);
+        }
     }
 }

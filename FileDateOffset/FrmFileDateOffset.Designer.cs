@@ -48,6 +48,8 @@
             this.txtSeconds = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
+            this.chkSetDate = new System.Windows.Forms.CheckBox();
+            this.btnSetNow = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lblPath
@@ -55,9 +57,9 @@
             this.lblPath.AutoSize = true;
             this.lblPath.Location = new System.Drawing.Point(12, 9);
             this.lblPath.Name = "lblPath";
-            this.lblPath.Size = new System.Drawing.Size(30, 13);
+            this.lblPath.Size = new System.Drawing.Size(29, 13);
             this.lblPath.TabIndex = 8;
-            this.lblPath.Text = "Ruta";
+            this.lblPath.Text = "Path";
             // 
             // txtPath
             // 
@@ -65,7 +67,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtPath.Location = new System.Drawing.Point(79, 6);
             this.txtPath.Name = "txtPath";
-            this.txtPath.Size = new System.Drawing.Size(235, 20);
+            this.txtPath.Size = new System.Drawing.Size(256, 20);
             this.txtPath.TabIndex = 7;
             // 
             // txtFilter
@@ -74,7 +76,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtFilter.Location = new System.Drawing.Point(79, 60);
             this.txtFilter.Name = "txtFilter";
-            this.txtFilter.Size = new System.Drawing.Size(235, 20);
+            this.txtFilter.Size = new System.Drawing.Size(256, 20);
             this.txtFilter.TabIndex = 12;
             // 
             // lblFilter
@@ -84,7 +86,7 @@
             this.lblFilter.Name = "lblFilter";
             this.lblFilter.Size = new System.Drawing.Size(29, 13);
             this.lblFilter.TabIndex = 11;
-            this.lblFilter.Text = "Filtro";
+            this.lblFilter.Text = "Filter";
             // 
             // cbFilter
             // 
@@ -94,14 +96,14 @@
             this.cbFilter.FormattingEnabled = true;
             this.cbFilter.Location = new System.Drawing.Point(79, 32);
             this.cbFilter.Name = "cbFilter";
-            this.cbFilter.Size = new System.Drawing.Size(235, 21);
+            this.cbFilter.Size = new System.Drawing.Size(256, 21);
             this.cbFilter.TabIndex = 10;
             this.cbFilter.SelectedIndexChanged += new System.EventHandler(this.cbFilter_SelectedIndexChanged);
             // 
             // btnTest
             // 
             this.btnTest.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnTest.Location = new System.Drawing.Point(216, 293);
+            this.btnTest.Location = new System.Drawing.Point(237, 293);
             this.btnTest.Name = "btnTest";
             this.btnTest.Size = new System.Drawing.Size(44, 23);
             this.btnTest.TabIndex = 15;
@@ -113,7 +115,7 @@
             // 
             this.btnGo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnGo.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnGo.Location = new System.Drawing.Point(266, 287);
+            this.btnGo.Location = new System.Drawing.Point(287, 287);
             this.btnGo.Name = "btnGo";
             this.btnGo.Size = new System.Drawing.Size(48, 32);
             this.btnGo.TabIndex = 14;
@@ -127,35 +129,35 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lsbFiles.FormattingEnabled = true;
-            this.lsbFiles.Location = new System.Drawing.Point(15, 118);
+            this.lsbFiles.Location = new System.Drawing.Point(15, 144);
             this.lsbFiles.Name = "lsbFiles";
-            this.lsbFiles.Size = new System.Drawing.Size(299, 160);
+            this.lsbFiles.Size = new System.Drawing.Size(320, 134);
             this.lsbFiles.TabIndex = 13;
             // 
             // txtYears
             // 
             this.txtYears.Location = new System.Drawing.Point(79, 86);
             this.txtYears.Name = "txtYears";
-            this.txtYears.Size = new System.Drawing.Size(20, 20);
+            this.txtYears.Size = new System.Drawing.Size(42, 20);
             this.txtYears.TabIndex = 16;
             // 
             // txtMonths
             // 
-            this.txtMonths.Location = new System.Drawing.Point(123, 86);
+            this.txtMonths.Location = new System.Drawing.Point(145, 87);
             this.txtMonths.Name = "txtMonths";
             this.txtMonths.Size = new System.Drawing.Size(20, 20);
             this.txtMonths.TabIndex = 17;
             // 
             // txtDays
             // 
-            this.txtDays.Location = new System.Drawing.Point(167, 86);
+            this.txtDays.Location = new System.Drawing.Point(189, 87);
             this.txtDays.Name = "txtDays";
             this.txtDays.Size = new System.Drawing.Size(20, 20);
             this.txtDays.TabIndex = 18;
             // 
             // txtHours
             // 
-            this.txtHours.Location = new System.Drawing.Point(209, 86);
+            this.txtHours.Location = new System.Drawing.Point(231, 87);
             this.txtHours.Name = "txtHours";
             this.txtHours.Size = new System.Drawing.Size(20, 20);
             this.txtHours.TabIndex = 19;
@@ -163,7 +165,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(105, 88);
+            this.label1.Location = new System.Drawing.Point(127, 89);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(12, 13);
             this.label1.TabIndex = 20;
@@ -172,7 +174,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(149, 88);
+            this.label2.Location = new System.Drawing.Point(171, 89);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(12, 13);
             this.label2.TabIndex = 21;
@@ -181,7 +183,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(235, 89);
+            this.label3.Location = new System.Drawing.Point(257, 90);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(10, 13);
             this.label3.TabIndex = 22;
@@ -189,7 +191,7 @@
             // 
             // txtMinutes
             // 
-            this.txtMinutes.Location = new System.Drawing.Point(251, 86);
+            this.txtMinutes.Location = new System.Drawing.Point(273, 87);
             this.txtMinutes.Name = "txtMinutes";
             this.txtMinutes.Size = new System.Drawing.Size(20, 20);
             this.txtMinutes.TabIndex = 23;
@@ -197,7 +199,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(277, 88);
+            this.label4.Location = new System.Drawing.Point(299, 89);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(10, 13);
             this.label4.TabIndex = 24;
@@ -205,7 +207,7 @@
             // 
             // txtSeconds
             // 
-            this.txtSeconds.Location = new System.Drawing.Point(293, 86);
+            this.txtSeconds.Location = new System.Drawing.Point(315, 87);
             this.txtSeconds.Name = "txtSeconds";
             this.txtSeconds.Size = new System.Drawing.Size(20, 20);
             this.txtSeconds.TabIndex = 25;
@@ -213,7 +215,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(193, 89);
+            this.label5.Location = new System.Drawing.Point(215, 90);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(10, 13);
             this.label5.TabIndex = 26;
@@ -228,11 +230,33 @@
             this.label6.TabIndex = 27;
             this.label6.Text = "OffsetDate";
             // 
+            // chkSetDate
+            // 
+            this.chkSetDate.AutoSize = true;
+            this.chkSetDate.Location = new System.Drawing.Point(12, 112);
+            this.chkSetDate.Name = "chkSetDate";
+            this.chkSetDate.Size = new System.Drawing.Size(65, 17);
+            this.chkSetDate.TabIndex = 28;
+            this.chkSetDate.Text = "SetDate";
+            this.chkSetDate.UseVisualStyleBackColor = true;
+            // 
+            // btnSetNow
+            // 
+            this.btnSetNow.Location = new System.Drawing.Point(260, 113);
+            this.btnSetNow.Name = "btnSetNow";
+            this.btnSetNow.Size = new System.Drawing.Size(75, 23);
+            this.btnSetNow.TabIndex = 29;
+            this.btnSetNow.Text = "SetNow";
+            this.btnSetNow.UseVisualStyleBackColor = true;
+            this.btnSetNow.Click += new System.EventHandler(this.btnSetNow_Click);
+            // 
             // FrmFileDateOffset
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(326, 331);
+            this.ClientSize = new System.Drawing.Size(347, 331);
+            this.Controls.Add(this.btnSetNow);
+            this.Controls.Add(this.chkSetDate);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.txtSeconds);
@@ -253,7 +277,7 @@
             this.Controls.Add(this.cbFilter);
             this.Controls.Add(this.lblPath);
             this.Controls.Add(this.txtPath);
-            this.MinimumSize = new System.Drawing.Size(342, 370);
+            this.MinimumSize = new System.Drawing.Size(363, 370);
             this.Name = "FrmFileDateOffset";
             this.Text = "FileDateOffset";
             this.ResumeLayout(false);
@@ -283,5 +307,7 @@
         private System.Windows.Forms.TextBox txtSeconds;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.CheckBox chkSetDate;
+        private System.Windows.Forms.Button btnSetNow;
     }
 }
